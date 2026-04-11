@@ -189,8 +189,3 @@ npm run build && npm run deploy
 © 2025 HOLO TUTO. Tous droits réservés.
 
 ---
-
-## 🤝 Skill HoloTuto React
-
-Ce projet a été généré avec la compétence `holotuto-fullstack-react`.  
-Fichier skill : `../holotuto-skill/SKILL.md`
