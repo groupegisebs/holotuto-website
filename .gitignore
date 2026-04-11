@@ -1,0 +1,31 @@
+# Outils internes Claude Code
+/.claude
+SKILL.md
+
+# Dépendances
+/node_modules
+
+# Build Vite
+/dist
+
+# Couverture de tests
+/tests/coverage
+
+# Rapports npm
+npm-audit.json
+
+# Fichiers sensibles
+.env
+.env.*
+*.pem
+*.key
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
