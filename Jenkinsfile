@@ -1,6 +1,6 @@
 // ==============================================================================
 // Pipeline CI/CD — HoloTuto Homepage
-// Repo    : https://github.com/negspace2001/holotuto-homepage
+// Repo    : https://github.com/negspace2001/holotuto-website
 // Domain  : https://holotuto.com
 // Registry: ghcr.io/negspace2001
 //
@@ -17,8 +17,8 @@ pipeline {
         // GitHub Container Registry
         REGISTRY      = 'ghcr.io/negspace2001'
         REGISTRY_HOST = 'ghcr.io'
-        IMAGE_NAME    = 'holotuto-homepage'
-        GITHUB_REPO   = 'negspace2001/holotuto-homepage'
+        IMAGE_NAME    = 'holotuto-website'
+        GITHUB_REPO   = 'negspace2001/holotuto-website'
 
         // Répertoire de déploiement sur holotuto.com
         DEPLOY_DIR    = '/opt/holotuto'
@@ -70,7 +70,7 @@ pipeline {
     // Déclencheurs
     // -------------------------------------------------------------------------
     triggers {
-        // Déclenché par webhook GitHub (configurer dans le repo negspace2001/holotuto-homepage)
+        // Déclenché par webhook GitHub (configurer dans le repo negspace2001/holotuto-website)
         githubPush()
         // Rebuild nocturne pour détecter de nouvelles vulnérabilités (npm audit)
         cron('H 3 * * *')
@@ -407,7 +407,7 @@ pipeline {
                                  done
 
                                  echo 'Nettoyage des images obsolètes...'
-                                 docker image prune -f --filter 'label=com.holotuto.app=holotuto-homepage' || true
+                                 docker image prune -f --filter 'label=com.holotuto.app=holotuto-website' || true
                                  echo '=== Déploiement terminé ==='"
                         """
                     }

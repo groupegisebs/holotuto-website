@@ -85,7 +85,12 @@ export default function GamificationSection() {
         {/* Block title sits ABOVE the card, then image/overlay card, then sub below */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {blocks.map((b) => (
-            <div key={b.title} className="flex flex-col items-center text-center">
+            <div 
+              key={b.title} 
+              className="flex flex-col items-center text-center bg-white rounded-3xl shadow-card hover:shadow-card-hover
+                         transition-shadow duration-200 overflow-hidden group"
+            >
+              <hr className="border-t border-ht-light mx-auto w-3/4 my-1" />
               <h3 className={`font-montserrat font-bold text-base ${b.color} mb-3`}>{b.title}</h3>
               <div className="card overflow-hidden group w-full">
                 <div className="relative overflow-hidden" style={{ height: '220px' }}>
@@ -102,6 +107,7 @@ export default function GamificationSection() {
                 </div>
               </div>
               <p className="font-inter text-ht-text text-sm mt-3">{b.sub}</p>
+              <hr className="border-t border-ht-light mx-auto w-3/4 my-1" />
             </div>
           ))}
         </div>

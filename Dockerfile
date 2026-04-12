@@ -1,6 +1,6 @@
 # ==============================================================================
 # HoloTuto Homepage — Dockerfile
-# Repo   : https://github.com/negspace2001/holotuto-homepage
+# Repo   : https://github.com/negspace2001/holotuto-website
 # Domain : https://holotuto.com
 # ==============================================================================
 
@@ -9,10 +9,10 @@
 # ==============================================================================
 FROM node:22-alpine3.21 AS builder
 
-LABEL org.opencontainers.image.source="https://github.com/negspace2001/holotuto-homepage" \
+LABEL org.opencontainers.image.source="https://github.com/negspace2001/holotuto-website" \
       org.opencontainers.image.url="https://holotuto.com" \
       org.opencontainers.image.vendor="negspace2001" \
-      org.opencontainers.image.title="holotuto-homepage" \
+      org.opencontainers.image.title="holotuto-website" \
       org.opencontainers.image.description="Site vitrine HoloTuto — React + Vite + Tailwind CSS"
 
 WORKDIR /app
@@ -35,10 +35,10 @@ RUN test -f dist/index.html || (echo "BUILD FAILED: dist/index.html absent" && e
 # ==============================================================================
 FROM nginxinc/nginx-unprivileged:stable-alpine AS production
 
-LABEL org.opencontainers.image.source="https://github.com/negspace2001/holotuto-homepage" \
+LABEL org.opencontainers.image.source="https://github.com/negspace2001/holotuto-website" \
       org.opencontainers.image.url="https://holotuto.com" \
       org.opencontainers.image.vendor="negspace2001" \
-      org.opencontainers.image.title="holotuto-homepage"
+      org.opencontainers.image.title="holotuto-website"
 
 # Remplacer la config Nginx par défaut
 RUN rm /etc/nginx/conf.d/default.conf

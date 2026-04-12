@@ -110,7 +110,7 @@ export default function ProblemSection() {
             <div key={c.title} className="card overflow-hidden group flex flex-col">
               {/* 1 — Card title on top */}
               <div className="px-5 pt-5 pb-3">
-                <h3 className="font-montserrat font-bold text-ht-navy text-sm leading-snug text-center">{c.title}</h3>
+                <h3 className="font-montserrat font-bold text-ht-navy text-sm leading-snug text-center h-10 overflow-hidden">{c.title}</h3>
               </div>
 
               {/* 2 — Photo in the middle */}

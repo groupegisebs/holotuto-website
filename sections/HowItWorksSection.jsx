@@ -54,12 +54,12 @@ export default function HowItWorksSection() {
       style={{ background: 'linear-gradient(155deg, #C8EBFA 0%, #EEF8FF 50%, #ffffff 100%)' }}
     >
       {/* Triangles décoratifs d'arrière-plan */}
-      <Triangle className="top-310 left-16"   size={16} opacity={0.30} />
-      <Triangle className="top-338 left-30"  size={10} opacity={0.18} />
-      <Triangle className="bottom-340 left-42" size={13} opacity={0.20} />
-      <Triangle className="top-360 right-54"  size={11} opacity={0.18} />
-      <Triangle className="bottom-355 right-24" size={15} opacity={0.22} />
-      <Triangle className="bottom-380 right-46" size={9}  opacity={0.15} />
+      <Triangle className="top-310 left-26"   size={16} opacity={0.30} />
+      <Triangle className="top-338 left-25"  size={10} opacity={0.18} />
+      <Triangle className="bottom-340 left-22" size={13} opacity={0.20} />
+      <Triangle className="top-360 right-24"  size={11} opacity={0.18} />
+      <Triangle className="bottom-355 right-14" size={15} opacity={0.22} />
+      <Triangle className="bottom-380 right-6" size={9}  opacity={0.15} />
 
       {/* SVG décoratif en avant-plan, couvre toute la section */}
       <div
@@ -67,7 +67,7 @@ export default function HowItWorksSection() {
         style={{ backgroundImage: 'url(/images/section4_img0.svg)' }}
       />
 
-      <div className="section-wrapper relative z-0">
+      <div className="section-wrapper relative z-0 hover:z-20 transition-[filter] duration-300 hover:brightness-105">
         <div className="section-header">
           <h2 className="section-title text-3xl md:text-4xl">{t('howItWorks.title')}</h2>
           <p className="section-subtitle max-w-2xl mx-auto text-base">{t('howItWorks.subtitle')}</p>
@@ -88,9 +88,10 @@ export default function HowItWorksSection() {
                   {s.num}
                 </div>
                 <div>
-                  <h3 className="font-montserrat font-bold text-ht-navy text-sm leading-snug">
+                  <h3 className="font-montserrat font-bold text-ht-navy text-sm leading-snug h-10 overflow-hidden">
                     {s.title}
                   </h3>
+                  <hr className="border-t border-ht-light mx-auto w-3/4 my-1" />
                   <p className="font-inter text-ht-text/70 text-xs italic mt-1">{s.sub}</p>
                 </div>
               </div>

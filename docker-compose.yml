@@ -1,6 +1,6 @@
 # ==============================================================================
 # HoloTuto Homepage — Docker Compose
-# Repo   : https://github.com/negspace2001/holotuto-homepage
+# Repo   : https://github.com/negspace2001/holotuto-website
 # Domain : https://holotuto.com
 #
 # Usage local  : docker compose up --build
@@ -18,12 +18,12 @@ services:
       context: .
       dockerfile: Dockerfile
       target: production
-    image: ghcr.io/negspace2001/holotuto-homepage:${IMAGE_TAG:-latest}
+    image: ghcr.io/negspace2001/holotuto-website:${IMAGE_TAG:-latest}
     container_name: holotuto
     restart: unless-stopped
 
     labels:
-      - "com.holotuto.app=holotuto-homepage"
+      - "com.holotuto.app=holotuto-website"
       - "com.holotuto.domain=holotuto.com"
       - "com.holotuto.image-tag=${IMAGE_TAG:-latest}"
 
