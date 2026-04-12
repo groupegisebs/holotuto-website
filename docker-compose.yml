@@ -1,0 +1,69 @@
+# ==============================================================================
+# HoloTuto Homepage — Docker Compose
+# Repo   : https://github.com/negspace2001/holotuto-website
+# Domain : https://holotuto.com
+#
+# Usage local  : docker compose up --build
+# Usage prod   : IMAGE_TAG=main-abc1234 docker compose up -d
+# Variables d'env (fichier .env ou export) :
+#   IMAGE_TAG  — tag de l'image (défaut : latest)
+#   HOST_PORT  — port exposé sur l'hôte (défaut : 3000)
+# ==============================================================================
+
+services:
+  holotuto:
+    # En développement / CI : build local
+    # En production : utiliser l'image publiée sur GHCR
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    image: ghcr.io/negspace2001/holotuto-website:${IMAGE_TAG:-latest}
+    container_name: holotuto
+    restart: unless-stopped
+
+    labels:
+      - "com.holotuto.app=holotuto-website"
+      - "com.holotuto.domain=holotuto.com"
+      - "com.holotuto.image-tag=${IMAGE_TAG:-latest}"
+
+    ports:
+      # En production, un reverse-proxy (Caddy/nginx) sur l'hôte gère TLS
+      # et redirige vers ce port. Changer HOST_PORT=80 si accès direct.
+      - "${HOST_PORT:-3000}:8080"
+
+    # Limites de ressources (Docker Compose v2 — fonctionne sans Swarm)
+    mem_limit: 128m
+    mem_reservation: 32m
+    cpus: "0.50"
+
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/healthz"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
+
+    # Système de fichiers en lecture seule — l'app statique n'écrit rien
+    read_only: true
+    tmpfs:
+      - /tmp:size=10m,mode=1777
+      - /var/cache/nginx:size=20m
+      - /var/run:size=5m
+
+    security_opt:
+      - no-new-privileges:true
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+# ==============================================================================
+# Network isolé (pas de réseau bridge par défaut partagé)
+# ==============================================================================
+networks:
+  default:
+    name: holotuto-net
+    driver: bridge

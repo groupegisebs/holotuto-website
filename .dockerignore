@@ -1,0 +1,35 @@
+# Dépendances — reconstruites dans le conteneur
+node_modules/
+
+# Build précédent — recréé par npm run build
+dist/
+
+# Fichiers Git
+.git/
+.gitignore
+
+# Outils de dev et IDE
+.claude/
+.vscode/
+.idea/
+*.log
+
+# Tests (inutiles dans l'image de production)
+tests/
+vitest.config.js
+npm-audit.json
+
+# Fichiers CI/CD (non nécessaires dans l'image)
+Jenkinsfile
+docker-compose*.yml
+docker-compose*.yaml
+
+# Documentation
+README.md
+SKILL.md
+
+# Fichiers sensibles éventuels
+.env
+.env.*
+*.pem
+*.key
