@@ -46,8 +46,8 @@ describe('Navbar — structure de base', () => {
     await renderWithI18n(<Navbar />, { lng: 'fr' })
     // Demo → bouton qui ouvre la modale Calendly
     expect(document.querySelector('button.btn-secondary')).toBeInTheDocument()
-    // Essai gratuit → lien externe vers holotuto.com
-    expect(document.querySelector('a[href="https://holotuto.com"].btn-primary')).toBeInTheDocument()
+    // Essai gratuit → lien externe vers classroom.holotuto.com
+    expect(document.querySelector('a[href="https://classroom.holotuto.com"].btn-primary')).toBeInTheDocument()
   })
 })
 

@@ -25,9 +25,9 @@ describe('ParentsSection — structure', () => {
     expect(document.querySelectorAll('.card-feature')).toHaveLength(3)
   })
 
-  it('contient le lien CTA vers holotuto.com', async () => {
+  it('contient le lien CTA vers classroom.holotuto.com', async () => {
     await renderWithI18n(<ParentsSection />)
-    expect(document.querySelector('a[href="https://holotuto.com"]')).toBeInTheDocument()
+    expect(document.querySelector('a[href="https://classroom.holotuto.com"]')).toBeInTheDocument()
   })
 })
 

@@ -83,7 +83,7 @@ export default function ParentsSection() {
               })}
             </div>
 
-            <a href="https://holotuto.com" target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex px-8 py-4 text-base shadow-lg shadow-ht-green/20">
+            <a href="https://classroom.holotuto.com" target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex px-8 py-4 text-base shadow-lg shadow-ht-green/20">
               {t('parents.cta')}
             </a>
           </div>

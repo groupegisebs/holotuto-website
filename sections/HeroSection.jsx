@@ -75,7 +75,7 @@ export default function HeroSection() {
             <p className="section-subtitle max-w-lg bg-white/60 rounded-xl px-3 py-2">{t('hero.subtitle')}</p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="https://holotuto.com" target="_blank" rel="noopener noreferrer" className="btn-primary px-8 py-4 text-base shadow-lg shadow-ht-green/20">
+              <a href="https://classroom.holotuto.com" target="_blank" rel="noopener noreferrer" className="btn-primary px-8 py-4 text-base shadow-lg shadow-ht-green/20">
                 {t('hero.cta_try')}
               </a>
               <button onClick={openModal} className="btn-secondary px-8 py-4 text-base">

@@ -70,7 +70,7 @@ export default function Navbar() {
           <button onClick={openModal} className="btn-secondary px-5 py-2 text-sm">
             {t('nav.seeDemo')}
           </button>
-          <a href="https://holotuto.com" target="_blank" rel="noopener noreferrer" className="btn-primary px-5 py-2 text-sm">
+          <a href="https://classroom.holotuto.com" target="_blank" rel="noopener noreferrer" className="btn-primary px-5 py-2 text-sm">
             {t('nav.tryFree')}
           </a>
         </div>
@@ -105,7 +105,7 @@ export default function Navbar() {
             <button onClick={() => { openModal(); setOpen(false) }} className="btn-secondary py-2.5 text-sm w-full">
               {t('nav.seeDemo')}
             </button>
-            <a href="https://holotuto.com" target="_blank" rel="noopener noreferrer" className="btn-primary py-2.5 text-sm w-full">
+            <a href="https://classroom.holotuto.com" target="_blank" rel="noopener noreferrer" className="btn-primary py-2.5 text-sm w-full">
               {t('nav.tryFree')}
             </a>
           </div>

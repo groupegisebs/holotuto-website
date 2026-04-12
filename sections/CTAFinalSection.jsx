@@ -40,7 +40,7 @@ export default function CTAFinalSection() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="https://holotuto.com" target="_blank" rel="noopener noreferrer" className="btn-primary px-10 py-4 text-base shadow-xl shadow-black/20 bg-ht-green">
+          <a href="https://classroom.holotuto.com" target="_blank" rel="noopener noreferrer" className="btn-primary px-10 py-4 text-base shadow-xl shadow-black/20 bg-ht-green">
             {t('cta_final.cta_try')}
           </a>
           <button onClick={openModal} className="btn-outline-white px-10 py-4 text-base">

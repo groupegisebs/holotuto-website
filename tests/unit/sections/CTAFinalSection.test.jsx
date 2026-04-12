@@ -28,9 +28,9 @@ describe('CTAFinalSection — structure', () => {
 })
 
 describe('CTAFinalSection — CTA', () => {
-  it('contient un lien CTA d\'essai vers holotuto.com (btn-primary)', async () => {
+  it('contient un lien CTA d\'essai vers classroom.holotuto.com (btn-primary)', async () => {
     await renderWithI18n(<CTAFinalSection />)
-    expect(document.querySelector('a[href="https://holotuto.com"].btn-primary')).toBeInTheDocument()
+    expect(document.querySelector('a[href="https://classroom.holotuto.com"].btn-primary')).toBeInTheDocument()
   })
 
   it('contient un bouton démo qui ouvre la modale Calendly', async () => {

@@ -92,7 +92,7 @@ export default function SolutionSection() {
         </div>
 
         <div className="text-center mt-8">
-          <a href="https://holotuto.com" target="_blank" rel="noopener noreferrer" className="btn-primary px-10 py-4 text-base shadow-lg shadow-ht-green/20">
+          <a href="https://classroom.holotuto.com" target="_blank" rel="noopener noreferrer" className="btn-primary px-10 py-4 text-base shadow-lg shadow-ht-green/20">
             {t('solution.cta')}
           </a>
         </div>
