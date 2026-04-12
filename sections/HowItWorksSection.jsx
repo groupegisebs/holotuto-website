@@ -63,7 +63,7 @@ export default function HowItWorksSection() {
 
       {/* SVG décoratif en avant-plan, couvre toute la section */}
       <div
-        className="absolute h-full inset-0 bg-no-repeat bg-bottom bg-cover pointer-events-none z-10"
+        className="hidden sm:block absolute h-full inset-0 bg-no-repeat bg-cover pointer-events-none z-10 sm:bg-left-bottom lg:bg-bottom"
         style={{ backgroundImage: 'url(/images/section4_img0.svg)' }}
       />
 
