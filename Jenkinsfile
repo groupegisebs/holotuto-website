@@ -62,7 +62,7 @@ pipeline {
         timeout(time: 30, unit: 'MINUTES')
         disableConcurrentBuilds()
         timestamps()
-        // Colorer les logs dans la console Jenkins
+        // Colorer les logs dans la console Jenkins (syntaxe Declarative Pipeline)
         ansiColor('xterm')
     }
 
@@ -306,9 +306,9 @@ pipeline {
                         run_test "GET /.env bloqué (403 ou 404)" \\
                             "[ \"\$(curl -so /dev/null -w '%{http_code}' \$TEST_URL/.env)\" != '200' ]"
 
-                        # Test 9 : Gzip actif
+                        # Test 9 : Gzip actif (requête GET — nginx ne renvoie pas Content-Encoding sur HEAD)
                         run_test "Gzip activé sur text/html" \\
-                            "curl -sI --compressed \$TEST_URL/ | grep -qi 'content-encoding: gzip'"
+                            "curl -sf -H 'Accept-Encoding: gzip' -D - --output /dev/null \$TEST_URL/ | grep -qi 'content-encoding: gzip'"
 
                         echo ""
                         echo "=== Résultats : \$PASS tests PASS, \$FAIL tests FAIL ==="
@@ -383,7 +383,7 @@ pipeline {
                         // Passer les variables Jenkins comme arguments explicites à la commande SSH
                         // afin d'éviter les problèmes d'interpolation dans les heredocs
                         sh """
-                            ssh -o StrictHostKeyChecking=no -o BatchMode=yes \${DEPLOY_HOST_STR} \\
+                            ssh -o StrictHostKeyChecking=no -o BatchMode=yes "\${DEPLOY_HOST_STR}" \\
                                 "set -euo pipefail
                                  echo '=== Déploiement holotuto.com ==='
                                  cd ${DEPLOY_DIR}
