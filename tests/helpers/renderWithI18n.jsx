@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 import { I18nextProvider } from 'react-i18next'
 import i18n from '../../i18n.js'
 import { CalendlyProvider } from '../../contexts/CalendlyContext'
@@ -12,9 +13,11 @@ import { CalendlyProvider } from '../../contexts/CalendlyContext'
 export async function renderWithI18n(ui, { lng = 'fr', ...renderOptions } = {}) {
   await i18n.changeLanguage(lng)
   return render(
-    <CalendlyProvider>
-      <I18nextProvider i18n={i18n}>{ui}</I18nextProvider>
-    </CalendlyProvider>,
+    <MemoryRouter>
+      <CalendlyProvider>
+        <I18nextProvider i18n={i18n}>{ui}</I18nextProvider>
+      </CalendlyProvider>
+    </MemoryRouter>,
     renderOptions,
   )
 }
@@ -24,8 +27,10 @@ export async function renderWithI18n(ui, { lng = 'fr', ...renderOptions } = {}) 
  */
 export function I18nWrapper({ children }) {
   return (
-    <CalendlyProvider>
-      <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
-    </CalendlyProvider>
+    <MemoryRouter>
+      <CalendlyProvider>
+        <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
+      </CalendlyProvider>
+    </MemoryRouter>
   )
 }

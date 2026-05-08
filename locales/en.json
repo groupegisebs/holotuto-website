@@ -232,6 +232,57 @@
     "copyright": "© {{year}} HOLO TUTO. All rights reserved.",
     "legal": "Legal notice",
     "privacy": "Privacy policy",
-    "gdpr": "GDPR"
+    "gdpr": "GDPR",
+    "col_legal": "Legal",
+    "link_terms": "Terms of use",
+    "link_privacy": "Privacy policy",
+    "link_legalNotice": "Legal notice",
+    "link_accountDeletion": "Account deletion",
+    "link_billing": "Billing & subscriptions",
+    "link_children": "Children & parents",
+    "link_cookies": "Cookies policy"
+  },
+  "legal": {
+    "back_home": "Back to home",
+    "updated": "Last updated",
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "subtitle": "How HOLO TUTO collects, uses and protects your personal information.",
+      "updated": "May 8, 2026"
+    },
+    "accountDeletion": {
+      "title": "Account & Data Deletion",
+      "subtitle": "How to delete your HOLO TUTO account and all associated data.",
+      "updated": "May 8, 2026"
+    },
+    "termsOfUse": {
+      "title": "Terms of Use",
+      "subtitle": "Rules governing use of the HOLO TUTO platform.",
+      "updated": "May 8, 2026"
+    },
+    "legalNotice": {
+      "title": "Legal Notice",
+      "subtitle": "Publisher information and legal details for holotuto.com.",
+      "updated": "May 8, 2026"
+    },
+    "billing": {
+      "title": "Billing & Subscriptions",
+      "subtitle": "Subscription plans, payments, auto-renewal, and cancellation.",
+      "updated": "May 8, 2026"
+    },
+    "children": {
+      "title": "Children & Parental Controls",
+      "subtitle": "How HOLO TUTO protects children's data and supports parental oversight.",
+      "updated": "May 8, 2026"
+    },
+    "contact": {
+      "title": "Contact & Support",
+      "subtitle": "Reach the HOLO TUTO team for support, privacy, or school partnerships."
+    },
+    "cookies": {
+      "title": "Cookies Policy",
+      "subtitle": "How HOLO TUTO uses cookies and similar technologies.",
+      "updated": "May 8, 2026"
+    }
   }
 }

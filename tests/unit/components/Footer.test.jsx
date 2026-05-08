@@ -40,46 +40,46 @@ describe('Footer — copyright dynamique', () => {
 })
 
 describe('Footer — liens de navigation', () => {
-  it('contient le lien #how-it-works', async () => {
+  it('contient le lien /#how-it-works', async () => {
     await renderWithI18n(<Footer />)
-    expect(document.querySelector('a[href="#how-it-works"]')).toBeInTheDocument()
+    expect(document.querySelector('a[href="/#how-it-works"]')).toBeInTheDocument()
   })
 
-  it('contient le lien #ai (fonctionnalités IA)', async () => {
+  it('contient le lien /#ai (fonctionnalités IA)', async () => {
     await renderWithI18n(<Footer />)
-    expect(document.querySelector('a[href="#ai"]')).toBeInTheDocument()
+    expect(document.querySelector('a[href="/#ai"]')).toBeInTheDocument()
   })
 
-  it('contient le lien #gamification', async () => {
+  it('contient le lien /#gamification', async () => {
     await renderWithI18n(<Footer />)
-    expect(document.querySelector('a[href="#gamification"]')).toBeInTheDocument()
+    expect(document.querySelector('a[href="/#gamification"]')).toBeInTheDocument()
   })
 
-  it('contient le lien #results', async () => {
+  it('contient le lien /#results', async () => {
     await renderWithI18n(<Footer />)
-    expect(document.querySelector('a[href="#results"]')).toBeInTheDocument()
+    expect(document.querySelector('a[href="/#results"]')).toBeInTheDocument()
   })
 
-  it('contient le lien #parents', async () => {
+  it('contient le lien /#parents', async () => {
     await renderWithI18n(<Footer />)
-    expect(document.querySelector('a[href="#parents"]')).toBeInTheDocument()
+    expect(document.querySelector('a[href="/#parents"]')).toBeInTheDocument()
   })
 
-  it('contient le lien #schools', async () => {
+  it('contient le lien /#schools', async () => {
     await renderWithI18n(<Footer />)
-    expect(document.querySelector('a[href="#schools"]')).toBeInTheDocument()
+    expect(document.querySelector('a[href="/#schools"]')).toBeInTheDocument()
   })
 
-  it('contient le lien #faq', async () => {
+  it('contient le lien /#faq', async () => {
     await renderWithI18n(<Footer />)
-    expect(document.querySelector('a[href="#faq"]')).toBeInTheDocument()
+    expect(document.querySelector('a[href="/#faq"]')).toBeInTheDocument()
   })
 })
 
 describe('Footer — liens externes', () => {
-  it('contient un lien mailto:contact@holotuto.com', async () => {
+  it('contient un lien vers /contact', async () => {
     await renderWithI18n(<Footer />)
-    expect(document.querySelector('a[href="mailto:contact@holotuto.com"]')).toBeInTheDocument()
+    expect(document.querySelector('a[href="/contact"]')).toBeInTheDocument()
   })
 
   it('contient un lien vers https://holotuto.com', async () => {
@@ -89,12 +89,12 @@ describe('Footer — liens externes', () => {
 })
 
 describe('Footer — liens légaux', () => {
-  it('rend 3 liens légaux (Mentions légales, Confidentialité, RGPD)', async () => {
+  it('rend les liens légaux de bas de page (mentions légales, confidentialité, cookies)', async () => {
     await renderWithI18n(<Footer />, { lng: 'fr' })
     const footer = document.querySelector('footer')
-    // Les 3 liens légaux pointent tous vers "#"
-    const legalLinks = footer.querySelectorAll('a[href="#"]')
-    expect(legalLinks.length).toBe(3)
+    expect(footer.querySelector('a[href="/legal-notice"]')).toBeInTheDocument()
+    expect(footer.querySelector('a[href="/privacy-policy"]')).toBeInTheDocument()
+    expect(footer.querySelector('a[href="/cookies-policy"]')).toBeInTheDocument()
   })
 })
 

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 export default function Footer() {
@@ -7,25 +8,36 @@ export default function Footer() {
     {
       titleKey: 'footer.col_product',
       links: [
-        { labelKey: 'footer.link_howItWorks', href: '#how-it-works', prop: '' },
-        { labelKey: 'footer.link_ai',          href: '#ai', prop: '' },
-        { labelKey: 'footer.link_gamification',href: '#gamification', prop: '' },
-        { labelKey: 'footer.link_results',     href: '#results', prop: '' },
+        { labelKey: 'footer.link_howItWorks', href: '/#how-it-works', external: false },
+        { labelKey: 'footer.link_ai',          href: '/#ai',          external: false },
+        { labelKey: 'footer.link_gamification',href: '/#gamification',external: false },
+        { labelKey: 'footer.link_results',     href: '/#results',     external: false },
       ],
     },
     {
       titleKey: 'footer.col_who',
       links: [
-        { labelKey: 'footer.link_parents', href: '#parents', prop: '' },
-        { labelKey: 'footer.link_schools', href: '#schools', prop: '' },
+        { labelKey: 'footer.link_parents', href: '/#parents', external: false },
+        { labelKey: 'footer.link_schools', href: '/#schools', external: false },
       ],
     },
     {
       titleKey: 'footer.col_support',
       links: [
-        { labelKey: 'footer.link_faq',     href: '#faq', prop: '' },
-        { labelKey: 'footer.link_contact', href: 'mailto:contact@holotuto.com', prop: '' },
-        { labelKey: 'footer.link_website', href: 'https://holotuto.com', prop: {'target': '_blank', 'rel': 'noopener noreferrer'} },
+        { labelKey: 'footer.link_faq',     href: '/#faq',                       external: false },
+        { labelKey: 'footer.link_contact', href: '/contact',                     external: false },
+        { labelKey: 'footer.link_website', href: 'https://holotuto.com',         external: true },
+      ],
+    },
+    {
+      titleKey: 'footer.col_legal',
+      links: [
+        { labelKey: 'footer.link_privacy',          href: '/privacy-policy',           external: false },
+        { labelKey: 'footer.link_terms',             href: '/terms-of-use',             external: false },
+        { labelKey: 'footer.link_legalNotice',       href: '/legal-notice',             external: false },
+        { labelKey: 'footer.link_accountDeletion',   href: '/account-deletion',         external: false },
+        { labelKey: 'footer.link_children',          href: '/children-data-protection', external: false },
+        { labelKey: 'footer.link_cookies',           href: '/cookies-policy',           external: false },
       ],
     },
   ]
@@ -33,7 +45,7 @@ export default function Footer() {
   return (
     <footer className="bg-ht-navy text-white pt-16 pb-8" id="contact">
       <div className="section-wrapper">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-10 mb-12">
 
           {/* Brand */}
           <div className="space-y-4">
@@ -66,13 +78,23 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {col.links.map((l) => (
                   <li key={l.href}>
-                    <a
-                      href={l.href}
-                      {...(l.prop ? l.prop : {})}
-                      className="font-inter text-sm text-white/65 hover:text-white transition-colors"
-                    >
-                      {t(l.labelKey)}
-                    </a>
+                    {l.external ? (
+                      <a
+                        href={l.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-inter text-sm text-white/65 hover:text-white transition-colors"
+                      >
+                        {t(l.labelKey)}
+                      </a>
+                    ) : (
+                      <Link
+                        to={l.href}
+                        className="font-inter text-sm text-white/65 hover:text-white transition-colors"
+                      >
+                        {t(l.labelKey)}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -83,9 +105,9 @@ export default function Footer() {
         <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs font-inter text-white/35">
           <p>{t('footer.copyright', { year: new Date().getFullYear() })}</p>
           <div className="flex gap-5">
-            <a href="#" className="hover:text-white transition-colors">{t('footer.legal')}</a>
-            <a href="#" className="hover:text-white transition-colors">{t('footer.privacy')}</a>
-            <a href="#" className="hover:text-white transition-colors">{t('footer.gdpr')}</a>
+            <Link to="/legal-notice" className="hover:text-white transition-colors">{t('footer.link_legalNotice')}</Link>
+            <Link to="/privacy-policy" className="hover:text-white transition-colors">{t('footer.link_privacy')}</Link>
+            <Link to="/cookies-policy" className="hover:text-white transition-colors">{t('footer.link_cookies')}</Link>
           </div>
         </div>
       </div>

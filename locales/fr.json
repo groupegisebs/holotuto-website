@@ -232,6 +232,57 @@
     "copyright": "© {{year}} HOLO TUTO. Tous droits réservés.",
     "legal": "Mentions légales",
     "privacy": "Politique de confidentialité",
-    "gdpr": "RGPD"
+    "gdpr": "RGPD",
+    "col_legal": "Légal",
+    "link_terms": "Conditions d'utilisation",
+    "link_privacy": "Politique de confidentialité",
+    "link_legalNotice": "Mentions légales",
+    "link_accountDeletion": "Suppression de compte",
+    "link_billing": "Paiements et abonnements",
+    "link_children": "Enfants et parents",
+    "link_cookies": "Politique des témoins"
+  },
+  "legal": {
+    "back_home": "Retour à l'accueil",
+    "updated": "Dernière mise à jour",
+    "privacyPolicy": {
+      "title": "Politique de confidentialité",
+      "subtitle": "Comment HOLO TUTO collecte, utilise et protège vos renseignements personnels.",
+      "updated": "8 mai 2026"
+    },
+    "accountDeletion": {
+      "title": "Suppression de compte et données",
+      "subtitle": "Comment supprimer votre compte HOLO TUTO et toutes les données associées.",
+      "updated": "8 mai 2026"
+    },
+    "termsOfUse": {
+      "title": "Conditions générales d'utilisation",
+      "subtitle": "Règles régissant l'utilisation de la plateforme HOLO TUTO.",
+      "updated": "8 mai 2026"
+    },
+    "legalNotice": {
+      "title": "Mentions légales",
+      "subtitle": "Informations sur l'éditeur et mentions légales de holotuto.com.",
+      "updated": "8 mai 2026"
+    },
+    "billing": {
+      "title": "Paiements et abonnements",
+      "subtitle": "Forfaits, paiements, renouvellement automatique et annulation.",
+      "updated": "8 mai 2026"
+    },
+    "children": {
+      "title": "Enfants et contrôle parental",
+      "subtitle": "Comment HOLO TUTO protège les données des enfants et soutient la surveillance parentale.",
+      "updated": "8 mai 2026"
+    },
+    "contact": {
+      "title": "Contact et support",
+      "subtitle": "Rejoignez l'équipe HOLO TUTO pour le support, la confidentialité ou les partenariats scolaires."
+    },
+    "cookies": {
+      "title": "Politique relative aux témoins",
+      "subtitle": "Comment HOLO TUTO utilise les témoins et technologies similaires.",
+      "updated": "8 mai 2026"
+    }
   }
 }
