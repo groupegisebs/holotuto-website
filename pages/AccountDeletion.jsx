@@ -4,12 +4,6 @@ import LegalLayout from './LegalLayout'
 function AccountDeletionEN() {
   return (
     <>
-      <div className="highlight-box">
-        <p className="!mb-0">
-          <strong>Google Play requirement:</strong> If your app allows account creation, Google Play requires that users can delete their account and associated data, both from within the app and via a publicly accessible web link. This page fulfils that requirement.
-        </p>
-      </div>
-
       <h2>1. What Gets Deleted</h2>
       <p>When you request account deletion, the following data is permanently and irreversibly erased:</p>
       <ul>
@@ -65,12 +59,6 @@ function AccountDeletionEN() {
 function AccountDeletionFR() {
   return (
     <>
-      <div className="highlight-box">
-        <p className="!mb-0">
-          <strong>Exigence Google Play :</strong> Si votre application permet la création de compte, Google Play exige que les utilisateurs puissent supprimer leur compte et les données associées, depuis l'application et via un lien web public. Cette page répond à cette exigence.
-        </p>
-      </div>
-
       <h2>1. Ce qui est supprimé</h2>
       <p>Lorsque vous demandez la suppression de votre compte, les données suivantes sont effacées de manière permanente et irréversible :</p>
       <ul>

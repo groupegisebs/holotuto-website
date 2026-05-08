@@ -4,11 +4,9 @@ import LegalLayout from './LegalLayout'
 function PrivacyPolicyEN() {
   return (
     <>
-      <div className="highlight-box">
-        <p className="!mb-0">
-          <strong>Summary:</strong> HOLO TUTO collects only the data needed to run the service. We never sell your data, never display advertising, and children's data is handled with the highest level of protection. You can request deletion of your account and all associated data at any time.
-        </p>
-      </div>
+      <p>
+        HOLO TUTO collects only the data needed to run the service. We never sell your data, never display advertising, and children's data is handled with the highest level of protection. You can request deletion of your account and all associated data at any time.
+      </p>
 
       <h2>1. Data Controller</h2>
       <p>
@@ -128,11 +126,9 @@ function PrivacyPolicyEN() {
 function PrivacyPolicyFR() {
   return (
     <>
-      <div className="highlight-box">
-        <p className="!mb-0">
-          <strong>En bref :</strong> HOLO TUTO collecte uniquement les données nécessaires au fonctionnement du service. Nous ne vendons jamais vos données, n'affichons aucune publicité, et les données des enfants font l'objet des protections les plus strictes. Vous pouvez demander la suppression de votre compte et de toutes les données associées à tout moment.
-        </p>
-      </div>
+      <p>
+        HOLO TUTO collecte uniquement les données nécessaires au fonctionnement du service. Nous ne vendons jamais vos données, n'affichons aucune publicité, et les données des enfants font l'objet des protections les plus strictes. Vous pouvez demander la suppression de votre compte et de toutes les données associées à tout moment.
+      </p>
 
       <h2>1. Responsable du traitement</h2>
       <p>

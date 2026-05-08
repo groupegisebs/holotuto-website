@@ -4,11 +4,9 @@ import LegalLayout from './LegalLayout'
 function CookiesEN() {
   return (
     <>
-      <div className="highlight-box">
-        <p className="!mb-0">
-          <strong>Short version:</strong> HOLO TUTO uses only <strong>strictly necessary cookies</strong> for authentication and session management. We do not use advertising cookies, tracking pixels, or third-party analytics that profile individual users.
-        </p>
-      </div>
+      <p>
+        HOLO TUTO uses only strictly necessary cookies for authentication and session management. We do not use advertising cookies, tracking pixels, or third-party analytics that profile individual users.
+      </p>
 
       <h2>1. What Are Cookies?</h2>
       <p>
@@ -79,11 +77,9 @@ function CookiesEN() {
 function CookiesFR() {
   return (
     <>
-      <div className="highlight-box">
-        <p className="!mb-0">
-          <strong>En bref :</strong> HOLO TUTO utilise uniquement des <strong>témoins strictement nécessaires</strong> à l'authentification et à la gestion des sessions. Nous n'utilisons pas de témoins publicitaires, de pixels de suivi ni d'outils d'analyse tiers qui profilent les utilisateurs individuels.
-        </p>
-      </div>
+      <p>
+        HOLO TUTO utilise uniquement des témoins strictement nécessaires à l'authentification et à la gestion des sessions. Nous n'utilisons pas de témoins publicitaires, de pixels de suivi ni d'outils d'analyse tiers qui profilent les utilisateurs individuels.
+      </p>
 
       <h2>1. Qu'est-ce qu'un témoin (cookie) ?</h2>
       <p>

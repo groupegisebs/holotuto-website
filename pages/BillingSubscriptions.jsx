@@ -4,15 +4,9 @@ import LegalLayout from './LegalLayout'
 function BillingEN() {
   return (
     <>
-      <div className="highlight-box">
-        <p className="!mb-0">
-          All prices are in <strong>Canadian dollars (CAD)</strong> and include applicable taxes (QST + GST) where required by law. Payments are processed securely by <strong>Stripe</strong>.
-        </p>
-      </div>
-
       <h2>1. Subscription Plans</h2>
       <p>
-        HOLO TUTO offers subscription plans for individual families and schools. Current plans and pricing are displayed on the platform's pricing page. All plans are billed in Canadian dollars (CAD).
+        HOLO TUTO offers subscription plans for individual families and schools. Current plans and pricing are displayed on the platform's pricing page. All plans are billed in <strong>Canadian dollars (CAD)</strong> and include applicable taxes (QST + GST) where required by law. Payments are processed securely by Stripe.
       </p>
       <ul>
         <li><strong>Family plan:</strong> covers one parent account and up to a specified number of child profiles</li>
@@ -84,15 +78,9 @@ function BillingEN() {
 function BillingFR() {
   return (
     <>
-      <div className="highlight-box">
-        <p className="!mb-0">
-          Tous les prix sont en <strong>dollars canadiens (CAD)</strong> et incluent les taxes applicables (TVQ + TPS) là où la loi l'exige. Les paiements sont traités de manière sécurisée par <strong>Stripe</strong>.
-        </p>
-      </div>
-
       <h2>1. Forfaits d'abonnement</h2>
       <p>
-        HOLO TUTO propose des forfaits d'abonnement pour les familles et les établissements scolaires. Les forfaits actuels et les tarifs sont affichés sur la page de tarification de la plateforme. Tous les forfaits sont facturés en dollars canadiens (CAD).
+        HOLO TUTO propose des forfaits d'abonnement pour les familles et les établissements scolaires. Les forfaits actuels et les tarifs sont affichés sur la page de tarification de la plateforme. Tous les forfaits sont facturés en <strong>dollars canadiens (CAD)</strong> et incluent les taxes applicables (TVQ + TPS) là où la loi l'exige. Les paiements sont traités de manière sécurisée par Stripe.
       </p>
       <ul>
         <li><strong>Forfait famille :</strong> couvre un compte parent et jusqu'à un nombre défini de profils enfants</li>

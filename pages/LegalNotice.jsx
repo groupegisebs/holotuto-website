@@ -10,6 +10,7 @@ function LegalNoticeEN() {
         <strong>Legal form:</strong> Corporation incorporated under the Business Corporations Act (Quebec, Canada)<br />
         <strong>Province:</strong> Quebec, Canada<br />
         <strong>General contact:</strong> <a href="mailto:info@holotuto.com">info@holotuto.com</a><br />
+        <strong>Executive office:</strong> <a href="mailto:ceo@gisebs.com">ceo@gisebs.com</a><br />
         <strong>Website:</strong> <a href="https://holotuto.com" target="_blank" rel="noopener noreferrer">holotuto.com</a>
       </p>
 
@@ -66,6 +67,7 @@ function LegalNoticeFR() {
         <strong>Forme juridique :</strong> Société par actions incorporée en vertu de la Loi sur les sociétés par actions (Québec, Canada)<br />
         <strong>Province :</strong> Québec, Canada<br />
         <strong>Contact général :</strong> <a href="mailto:info@holotuto.com">info@holotuto.com</a><br />
+        <strong>Direction :</strong> <a href="mailto:ceo@gisebs.com">ceo@gisebs.com</a><br />
         <strong>Site web :</strong> <a href="https://holotuto.com" target="_blank" rel="noopener noreferrer">holotuto.com</a>
       </p>
 

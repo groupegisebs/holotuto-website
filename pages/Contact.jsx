@@ -4,16 +4,10 @@ import LegalLayout from './LegalLayout'
 function ContactEN() {
   return (
     <>
-      <div className="highlight-box">
-        <p className="!mb-0">
-          We aim to respond to all enquiries within <strong>2 business days</strong>. For account or billing issues, please include the email address associated with your account.
-        </p>
-      </div>
-
       <h2>General Support</h2>
       <p>
-        For questions about the platform, your subscription, or your child's account:
-        <br />
+        For questions about the platform, your subscription, or your child's account. We aim to respond within <strong>2 business days</strong> — please include the email address associated with your account.
+        <br /><br />
         <a href="mailto:support@holotuto.com">support@holotuto.com</a>
       </p>
 
@@ -49,6 +43,13 @@ function ContactEN() {
         Groupe GISEBS Inc., Quebec, Canada
       </p>
 
+      <h2>Executive Office</h2>
+      <p>
+        <a href="mailto:ceo@gisebs.com">ceo@gisebs.com</a>
+        <br />
+        Groupe GISEBS Inc., Quebec, Canada
+      </p>
+
       <h2>Demo Request</h2>
       <p>
         Want to see HOLO TUTO in action? Request a personalised demo directly from the{' '}
@@ -61,16 +62,10 @@ function ContactEN() {
 function ContactFR() {
   return (
     <>
-      <div className="highlight-box">
-        <p className="!mb-0">
-          Nous visons à répondre à toutes les demandes dans les <strong>2 jours ouvrables</strong>. Pour les problèmes de compte ou de facturation, veuillez inclure l'adresse courriel associée à votre compte.
-        </p>
-      </div>
-
       <h2>Support général</h2>
       <p>
-        Pour toute question sur la plateforme, votre abonnement ou le compte de votre enfant :
-        <br />
+        Pour toute question sur la plateforme, votre abonnement ou le compte de votre enfant. Nous visons à répondre dans les <strong>2 jours ouvrables</strong> — veuillez inclure l'adresse courriel associée à votre compte.
+        <br /><br />
         <a href="mailto:support@holotuto.com">support@holotuto.com</a>
       </p>
 
@@ -102,6 +97,13 @@ function ContactFR() {
       <h2>Juridique et presse</h2>
       <p>
         <a href="mailto:info@holotuto.com">info@holotuto.com</a>
+        <br />
+        Groupe GISEBS Inc., Québec, Canada
+      </p>
+
+      <h2>Direction</h2>
+      <p>
+        <a href="mailto:ceo@gisebs.com">ceo@gisebs.com</a>
         <br />
         Groupe GISEBS Inc., Québec, Canada
       </p>

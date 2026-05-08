@@ -4,11 +4,9 @@ import LegalLayout from './LegalLayout'
 function ChildrenDataEN() {
   return (
     <>
-      <div className="highlight-box">
-        <p className="!mb-0">
-          <strong>Our commitment:</strong> HOLO TUTO is built for children. We apply the highest level of data protection for all minors using the platform, in accordance with Quebec's Law 25, Canada's PIPEDA, and Apple/Google platform policies.
-        </p>
-      </div>
+      <p>
+        HOLO TUTO is built for children. We apply the highest level of data protection for all minors using the platform, in accordance with Quebec's Law 25 and Canada's PIPEDA.
+      </p>
 
       <h2>1. Who Controls Children's Data</h2>
       <p>
@@ -104,11 +102,9 @@ function ChildrenDataEN() {
 function ChildrenDataFR() {
   return (
     <>
-      <div className="highlight-box">
-        <p className="!mb-0">
-          <strong>Notre engagement :</strong> HOLO TUTO est conçu pour les enfants. Nous appliquons le plus haut niveau de protection des données pour tous les mineurs utilisant la plateforme, conformément à la Loi 25 du Québec, à la LPRPDE du Canada et aux politiques des plateformes Apple/Google.
-        </p>
-      </div>
+      <p>
+        HOLO TUTO est conçu pour les enfants. Nous appliquons le plus haut niveau de protection des données pour tous les mineurs utilisant la plateforme, conformément à la Loi 25 du Québec et à la LPRPDE du Canada.
+      </p>
 
       <h2>1. Qui contrôle les données des enfants</h2>
       <p>
