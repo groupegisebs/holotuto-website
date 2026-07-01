@@ -6,6 +6,7 @@
 # Usage local  : docker compose up --build
 # Usage prod   : IMAGE_TAG=main-abc1234 docker compose up -d
 # Variables d'env (fichier .env ou export) :
+#   IMAGE      — image sans tag (défaut : ghcr.io/negspace2001/holotuto-website)
 #   IMAGE_TAG  — tag de l'image (défaut : latest)
 #   HOST_PORT  — port exposé sur l'hôte (défaut : 3000)
 # ==============================================================================
@@ -18,7 +19,7 @@ services:
       context: .
       dockerfile: Dockerfile
       target: production
-    image: ghcr.io/negspace2001/holotuto-website:${IMAGE_TAG:-latest}
+    image: ${IMAGE:-ghcr.io/negspace2001/holotuto-website}:${IMAGE_TAG:-latest}
     container_name: holotuto
     restart: unless-stopped
 
