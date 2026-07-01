@@ -35,7 +35,10 @@ Optionnels : des valeurs par défaut raisonnables s'appliquent. Définir en **va
 | Type | Nom | Valeur | Défaut |
 |------|-----|--------|--------|
 | Variable | `UBUNTU2_DEPLOY_DIR` | Répertoire distant contenant `docker-compose.yml` | `/opt/holotuto` |
-| Variable | `UBUNTU2_HOST_PORT` | Port hôte mappé vers le `8080` du conteneur | `8082` |
+
+> **Port hôte figé à `8083`** (codé en dur dans le workflow). `8082` est déjà pris
+> par `cadvisor` sur ce serveur. Pour changer, modifier `HOST_PORT_RAW` dans
+> `.github/workflows/deploy-production.yml`.
 
 L'image est publiée automatiquement sur `ghcr.io/groupegisebs/holotuto-website`
 via le `GITHUB_TOKEN` du workflow — aucun PAT à configurer.
@@ -74,12 +77,12 @@ Le workflow se charge de `docker login ghcr.io`, `docker pull`, puis
 
 ## Reverse proxy (Nginx Proxy Manager)
 
-Le conteneur écoute en interne sur `8080` et est mappé sur `HOST_PORT` (défaut `8082`).
+Le conteneur écoute en interne sur `8080` et est mappé sur `8083` de l'hôte.
 
 | Champ | Valeur |
 |-------|--------|
 | Scheme | **`http`** (le SSL est géré par NPM) |
 | Forward Host | `172.17.0.1` |
-| Forward Port | `8082` *(= `UBUNTU2_HOST_PORT`)* |
+| Forward Port | `8083` |
 
 Endpoint de santé : `GET /healthz` → `ok`.
