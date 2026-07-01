@@ -90,7 +90,7 @@ fi
 if [ -n "\$PORT_OWNER" ]; then
   echo "::error::Le port ${HOST_PORT} est déjà utilisé sur ce serveur :"
   echo "\$PORT_OWNER"
-  echo "Choisissez un port libre via la variable UBUNTU2_HOST_PORT (Settings → Secrets and variables → Actions)."
+  echo "Choisissez un port libre en modifiant HOST_PORT_RAW dans .github/workflows/deploy-production.yml."
   docker logout ghcr.io || true
   exit 1
 fi
