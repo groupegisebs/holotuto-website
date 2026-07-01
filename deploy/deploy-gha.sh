@@ -83,13 +83,18 @@ echo 'Pull image: ${FULL_IMAGE}'
 docker pull '${FULL_IMAGE}'
 
 echo 'Vérification de la disponibilité du port hôte ${HOST_PORT}...'
-PORT_OWNER=\$(docker ps --format '{{.Names}}\t{{.Ports}}' | grep ":${HOST_PORT}->" | grep -v '^holotuto\b' || true)
-if [ -z "\$PORT_OWNER" ] && command -v ss >/dev/null 2>&1; then
-  PORT_OWNER=\$(sudo ss -ltnp 2>/dev/null | grep -E "[:.]${HOST_PORT}[[:space:]]" || true)
+PORTS_ON_HOST=\$(docker ps --format '{{.Names}}\t{{.Ports}}' | grep ":${HOST_PORT}->" || true)
+# Si c'est notre propre conteneur holotuto qui occupe le port, compose le recréera -> OK
+HOLO_ON_PORT=\$(printf '%s\n' "\$PORTS_ON_HOST" | grep '^holotuto\b' || true)
+# Un AUTRE conteneur sur ce port = vrai conflit
+CONFLICT=\$(printf '%s\n' "\$PORTS_ON_HOST" | grep -v '^holotuto\b' | grep -v '^\$' || true)
+# Repli : port tenu par un processus non-docker (uniquement si aucun conteneur ne l'utilise)
+if [ -z "\$CONFLICT" ] && [ -z "\$HOLO_ON_PORT" ] && command -v ss >/dev/null 2>&1; then
+  CONFLICT=\$(sudo ss -ltnp 2>/dev/null | grep -E "[:.]${HOST_PORT}[[:space:]]" || true)
 fi
-if [ -n "\$PORT_OWNER" ]; then
-  echo "::error::Le port ${HOST_PORT} est déjà utilisé sur ce serveur :"
-  echo "\$PORT_OWNER"
+if [ -n "\$CONFLICT" ]; then
+  echo "::error::Le port ${HOST_PORT} est déjà utilisé par un autre service :"
+  echo "\$CONFLICT"
   echo "Choisissez un port libre en modifiant HOST_PORT_RAW dans .github/workflows/deploy-production.yml."
   docker logout ghcr.io || true
   exit 1
