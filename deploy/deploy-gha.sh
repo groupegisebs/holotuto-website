@@ -8,7 +8,7 @@
 #   SSH_PORT     Port SSH                             [défaut 22]
 #   SSH_KEY_PATH Chemin de la clé privée              [requis en pratique]
 #   DEPLOY_DIR   Répertoire de déploiement distant    [défaut /opt/holotuto]
-#   HOST_PORT    Port hôte mappé vers le 8080 du conteneur [défaut 8083]
+#   HOST_PORT    Port hôte mappé vers le 8080 du conteneur [défaut 8888]
 #   IMAGE        Image sans tag (ghcr.io/<owner>/holotuto-website) [requis]
 #   IMAGE_TAG    Tag de l'image (ex. main-a1b2c3d)    [requis]
 #   GHCR_USER    Utilisateur pour docker login ghcr.io [requis]
@@ -24,7 +24,7 @@ set -euo pipefail
 : "${GHCR_TOKEN:?GHCR_TOKEN requis}"
 : "${SSH_PORT:=22}"
 : "${DEPLOY_DIR:=/opt/holotuto}"
-: "${HOST_PORT:=8083}"
+: "${HOST_PORT:=8888}"
 
 sanitize() {
   printf '%s' "$1" | tr -d '\r\n\t' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e 's/^"//' -e 's/"$//' -e "s/^'//" -e "s/'$//"

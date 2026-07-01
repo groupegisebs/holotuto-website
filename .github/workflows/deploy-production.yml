@@ -100,8 +100,8 @@ jobs:
           SSH_USER_RAW: ${{ vars.SSH_USER_UBUNTU2 || secrets.SSH_USER_UBUNTU2 }}
           SSH_PORT_RAW: ${{ vars.SSH_PORT_UBUNTU2 || secrets.SSH_PORT_UBUNTU2 || '22' }}
           DEPLOY_DIR_RAW: ${{ vars.UBUNTU2_DEPLOY_DIR || secrets.UBUNTU2_DEPLOY_DIR || '/opt/holotuto' }}
-          # Port hôte figé (8083 est libre sur ubuntu2 ; 8082 est pris par cadvisor)
-          HOST_PORT_RAW: "8083"
+          # Port hôte figé (8888 est libre sur ubuntu2 ; 8082 pris par cadvisor, 8083 déjà utilisé)
+          HOST_PORT_RAW: "8888"
         run: |
           source deploy/gha-env.sh
           missing=0
