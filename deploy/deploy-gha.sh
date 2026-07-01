@@ -82,6 +82,19 @@ printf '%s' '${GHCR_TOKEN}' | docker login ghcr.io -u '${GHCR_USER}' --password-
 echo 'Pull image: ${FULL_IMAGE}'
 docker pull '${FULL_IMAGE}'
 
+echo 'Vérification de la disponibilité du port hôte ${HOST_PORT}...'
+PORT_OWNER=\$(docker ps --format '{{.Names}}\t{{.Ports}}' | grep ":${HOST_PORT}->" | grep -v '^holotuto\b' || true)
+if [ -z "\$PORT_OWNER" ] && command -v ss >/dev/null 2>&1; then
+  PORT_OWNER=\$(sudo ss -ltnp 2>/dev/null | grep -E "[:.]${HOST_PORT}[[:space:]]" || true)
+fi
+if [ -n "\$PORT_OWNER" ]; then
+  echo "::error::Le port ${HOST_PORT} est déjà utilisé sur ce serveur :"
+  echo "\$PORT_OWNER"
+  echo "Choisissez un port libre via la variable UBUNTU2_HOST_PORT (Settings → Secrets and variables → Actions)."
+  docker logout ghcr.io || true
+  exit 1
+fi
+
 echo 'Démarrage docker compose...'
 IMAGE='${IMAGE}' IMAGE_TAG='${IMAGE_TAG}' HOST_PORT='${HOST_PORT}' \\
   docker compose up -d --remove-orphans
