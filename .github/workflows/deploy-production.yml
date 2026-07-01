@@ -1,0 +1,193 @@
+name: Deploy Production
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+    inputs:
+      server:
+        description: Serveur cible
+        required: true
+        default: ubuntu2
+        type: choice
+        options:
+          - ubuntu2
+
+concurrency:
+  group: deploy-${{ github.event.inputs.server || 'ubuntu2' }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  NODE_VERSION: "22"
+  IMAGE_NAME: holotuto-website
+  TARGET_SERVER: ${{ github.event.inputs.server || 'ubuntu2' }}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install
+        run: npm ci --ignore-scripts
+
+      - name: Test
+        run: npm test
+
+      - name: Build (validation Vite)
+        run: |
+          npm run build
+          test -f dist/index.html || { echo "::error::dist/index.html absent"; exit 1; }
+
+      # --- Image : ghcr.io/<owner>/holotuto-website (owner en minuscules) ---
+      - name: Compute image tags
+        id: meta
+        run: |
+          OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          BRANCH=$(echo "${GITHUB_REF_NAME}" | tr '/' '-')
+          IMAGE="ghcr.io/${OWNER}/${IMAGE_NAME}"
+          TAG="${BRANCH}-${SHORT_SHA}"
+          echo "image=${IMAGE}"      >> "$GITHUB_OUTPUT"
+          echo "tag=${TAG}"          >> "$GITHUB_OUTPUT"
+          echo "full=${IMAGE}:${TAG}" >> "$GITHUB_OUTPUT"
+          echo "Image : ${IMAGE}:${TAG}"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build & push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          target: production
+          push: true
+          tags: |
+            ${{ steps.meta.outputs.full }}
+            ${{ steps.meta.outputs.image }}:latest
+          labels: |
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.ref.name=${{ github.ref_name }}
+            org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+            com.holotuto.build.number=${{ github.run_number }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # --- Secrets org : SSH_*_UBUNTU2 --- Secrets/variables repo : UBUNTU2_* ---
+      - name: Load deploy configuration
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY_UBUNTU2 }}
+          SSH_HOST_RAW: ${{ vars.SSH_HOST_UBUNTU2 || secrets.SSH_HOST_UBUNTU2 }}
+          SSH_USER_RAW: ${{ vars.SSH_USER_UBUNTU2 || secrets.SSH_USER_UBUNTU2 }}
+          SSH_PORT_RAW: ${{ vars.SSH_PORT_UBUNTU2 || secrets.SSH_PORT_UBUNTU2 || '22' }}
+          DEPLOY_DIR_RAW: ${{ vars.UBUNTU2_DEPLOY_DIR || secrets.UBUNTU2_DEPLOY_DIR || '/opt/holotuto' }}
+          HOST_PORT_RAW: ${{ vars.UBUNTU2_HOST_PORT || secrets.UBUNTU2_HOST_PORT || '8082' }}
+        run: |
+          source deploy/gha-env.sh
+          missing=0
+          if [ -z "$SSH_PRIVATE_KEY" ]; then
+            echo "::error::SSH_PRIVATE_KEY_UBUNTU2 manquant (org → Repository access → holotuto-website, ou secret repo)"
+            missing=1
+          fi
+          if [ -z "$SSH_HOST_RAW" ]; then
+            echo "::error::SSH_HOST_UBUNTU2 manquant (secret ou variable)"
+            missing=1
+          fi
+          if [ -z "$SSH_USER_RAW" ]; then
+            echo "::error::SSH_USER_UBUNTU2 manquant (secret ou variable)"
+            missing=1
+          fi
+          if [ "$missing" -eq 1 ]; then exit 1; fi
+
+          SSH_HOST=$(gha_sanitize_host "$SSH_HOST_RAW")
+          SSH_USER=$(gha_sanitize "$SSH_USER_RAW")
+          SSH_PORT=$(gha_sanitize "$SSH_PORT_RAW")
+          DEPLOY_DIR=$(gha_sanitize "$DEPLOY_DIR_RAW")
+          HOST_PORT=$(gha_sanitize "$HOST_PORT_RAW")
+
+          if [[ ! "$SSH_HOST" =~ ^[0-9a-zA-Z.-]+$ ]]; then
+            echo "::error::SSH_HOST_UBUNTU2 format invalide — IP ou hostname seul (ex. 51.79.53.198), sans http://"
+            exit 1
+          fi
+          if [[ ! "$SSH_PORT" =~ ^[0-9]+$ ]]; then
+            echo "::error::SSH_PORT_UBUNTU2 invalide (ex. 22)"
+            exit 1
+          fi
+          if [[ ! "$SSH_USER" =~ ^[a-zA-Z0-9._-]+$ ]]; then
+            echo "::error::SSH_USER_UBUNTU2 invalide (ex. ubuntu)"
+            exit 1
+          fi
+          if [[ ! "$HOST_PORT" =~ ^[0-9]+$ ]]; then
+            echo "::error::UBUNTU2_HOST_PORT invalide (ex. 8082)"
+            exit 1
+          fi
+
+          gha_write_env SSH_HOST "$SSH_HOST"
+          gha_write_env SSH_USER "$SSH_USER"
+          gha_write_env SSH_PORT "$SSH_PORT"
+          gha_write_env DEPLOY_DIR "$DEPLOY_DIR"
+          gha_write_env HOST_PORT "$HOST_PORT"
+          echo "Configuration OK (host=${SSH_HOST}, user=${SSH_USER}, port=${SSH_PORT}, dir=${DEPLOY_DIR}, host_port=${HOST_PORT})"
+
+      - name: Setup SSH key
+        id: ssh
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY_UBUNTU2 }}
+        run: |
+          mkdir -p "$HOME/.ssh"
+          chmod 700 "$HOME/.ssh"
+          printf '%s\n' "$SSH_PRIVATE_KEY" > "$HOME/.ssh/deploy_key"
+          chmod 600 "$HOME/.ssh/deploy_key"
+          if ! ssh-keygen -y -f "$HOME/.ssh/deploy_key" > /dev/null 2>&1; then
+            echo "::error::SSH_PRIVATE_KEY_UBUNTU2 invalide (format clé incorrect)."
+            exit 1
+          fi
+          echo "SSH_KEY_PATH=$HOME/.ssh/deploy_key" >> "$GITHUB_ENV"
+
+      - name: Add server to known_hosts
+        run: ssh-keyscan -p "$SSH_PORT" -H "$SSH_HOST" >> "$HOME/.ssh/known_hosts"
+
+      - name: Deploy to ${{ env.TARGET_SERVER }}
+        env:
+          SSH_KEY_PATH: ${{ env.SSH_KEY_PATH }}
+          IMAGE: ${{ steps.meta.outputs.image }}
+          IMAGE_TAG: ${{ steps.meta.outputs.tag }}
+          GHCR_USER: ${{ github.actor }}
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash deploy/deploy-gha.sh
+
+      - name: Container status
+        if: success() || failure()
+        env:
+          SSH_KEY_PATH: ${{ env.SSH_KEY_PATH }}
+        run: |
+          if [ "${{ steps.ssh.outcome }}" != "success" ]; then
+            echo "SSH non configuré — étape ignorée."
+            exit 0
+          fi
+          if [ -z "${SSH_HOST:-}" ] || [ -z "${SSH_USER:-}" ]; then
+            echo "Configuration SSH absente — étape ignorée."
+            exit 0
+          fi
+          ssh -i "$SSH_KEY_PATH" -p "$SSH_PORT" -o BatchMode=yes -o StrictHostKeyChecking=yes \
+            "${SSH_USER}@${SSH_HOST}" \
+            "docker ps --filter 'name=holotuto' --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' || true"
