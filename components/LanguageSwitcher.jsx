@@ -12,9 +12,9 @@ export default function LanguageSwitcher({ className = '' }) {
     <button
       onClick={toggle}
       aria-label={current === 'fr' ? 'Switch to English' : 'Passer en français'}
-      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-all duration-200
+      className={`inline-flex items-center justify-center gap-1.5 h-9 px-3.5 rounded-full border-2 transition-all duration-200
         border-ht-blue/25 text-ht-navy hover:border-ht-blue hover:bg-ht-light
-        font-montserrat font-bold text-xs tracking-wide ${className}`}
+        font-montserrat font-bold text-sm tracking-wide ${className}`}
     >
       {/* Flag emoji + language code */}
       <span className="text-sm leading-none">{current === 'fr' ? '🇬🇧' : '🇫🇷'}</span>
