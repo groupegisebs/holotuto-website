@@ -1,15 +1,12 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Menu, X, Smartphone } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import LanguageSwitcher from './LanguageSwitcher'
 import { useCalendly } from '../contexts/CalendlyContext'
 import { WEB_APP_URL, ANDROID_APP_URL } from '../constants/links'
 
 const navLinkClass =
-  'inline-flex items-center h-9 text-sm font-inter font-medium text-ht-navy/80 hover:text-ht-blue transition-colors whitespace-nowrap'
-
-const actionOutlineClass =
-  'inline-flex items-center justify-center gap-1.5 h-9 px-3.5 text-sm font-montserrat font-bold rounded-full border-2 border-ht-blue/25 text-ht-navy hover:border-ht-blue hover:bg-ht-light transition-all duration-200 whitespace-nowrap'
+  'inline-flex items-center h-9 text-sm font-inter font-medium text-ht-navy/70 hover:text-ht-blue transition-colors whitespace-nowrap'
 
 export default function Navbar() {
   const { t } = useTranslation()
@@ -40,11 +37,11 @@ export default function Navbar() {
           : 'bg-white'
       }`}
     >
-      <nav className="section-wrapper flex items-center h-16 gap-4 xl:gap-6">
+      <nav className="section-wrapper flex items-center h-[4.5rem] gap-4 xl:gap-8">
 
-        {/* Logo */}
-        <a href="#hero" className="flex items-center gap-2 flex-shrink-0">
-          <div className="w-10 h-10 rounded-full flex items-center justify-center">
+        {/* Logo + tagline (comme la maquette) */}
+        <a href="#hero" className="flex items-center gap-2.5 flex-shrink-0">
+          <div className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0">
             <img
               src="/images/logo.svg"
               alt={t('nav.logo')}
@@ -52,14 +49,19 @@ export default function Navbar() {
               loading="lazy"
             />
           </div>
-          <span className="font-montserrat font-extrabold text-lg tracking-tight">
-            <span className="text-ht-blue">HOLO</span>
-            <span className="text-ht-green"> TUTO</span>
-          </span>
+          <div className="leading-tight">
+            <span className="font-montserrat font-extrabold text-lg tracking-tight block">
+              <span className="text-ht-blue">HOLO</span>
+              <span className="text-ht-green"> TUTO</span>
+            </span>
+            <span className="font-inter text-[11px] text-ht-text/55 hidden sm:block">
+              {t('nav.tagline')}
+            </span>
+          </div>
         </a>
 
-        {/* Desktop Nav — espacement uniforme */}
-        <div className="hidden lg:flex flex-1 items-center justify-center gap-5 xl:gap-6 min-w-0">
+        {/* Liens — espacement uniforme, centrés */}
+        <div className="hidden lg:flex flex-1 items-center justify-center gap-5 xl:gap-7 min-w-0">
           {navLinks.map((l) => (
             <a key={l.href} href={l.href} className={navLinkClass}>
               {l.label}
@@ -67,32 +69,22 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Desktop actions — même hauteur h-9, même gap */}
-        <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
+        {/* Actions : langue + 2 CTA (Android est dans le hero) */}
+        <div className="hidden lg:flex items-center gap-2.5 flex-shrink-0">
           <LanguageSwitcher />
-          <a
-            href={ANDROID_APP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={actionOutlineClass}
-          >
-            <Smartphone size={15} aria-hidden="true" />
-            {t('nav.downloadAndroid')}
-          </a>
-          <button onClick={openModal} className="btn-secondary h-9 px-4 text-sm">
+          <button onClick={openModal} className="btn-secondary h-9 px-5 text-sm">
             {t('nav.seeDemo')}
           </button>
           <a
             href={WEB_APP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary h-9 px-4 text-sm"
+            className="btn-primary h-9 px-5 text-sm"
           >
             {t('nav.tryFree')}
           </a>
         </div>
 
-        {/* Mobile: Language Switcher + hamburger */}
         <div className="lg:hidden flex items-center gap-2 ml-auto">
           <LanguageSwitcher />
           <button
@@ -105,7 +97,6 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile drawer */}
       {open && (
         <div className="lg:hidden bg-white border-t border-gray-100 px-4 py-5 space-y-1 shadow-lg">
           {navLinks.map((l) => (
@@ -124,9 +115,8 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className={`${actionOutlineClass} w-full`}
+              className="inline-flex items-center justify-center h-11 text-sm font-montserrat font-bold rounded-full border-2 border-ht-blue/25 text-ht-navy hover:bg-ht-light transition-colors w-full"
             >
-              <Smartphone size={15} aria-hidden="true" />
               {t('nav.downloadAndroid')}
             </a>
             <button

@@ -16,9 +16,9 @@ export default function LanguageSwitcher({ className = '' }) {
         border-ht-blue/25 text-ht-navy hover:border-ht-blue hover:bg-ht-light
         font-montserrat font-bold text-sm tracking-wide ${className}`}
     >
-      {/* Flag emoji + language code */}
-      <span className="text-sm leading-none">{current === 'fr' ? '🇬🇧' : '🇫🇷'}</span>
-      <span>{current === 'fr' ? 'EN' : 'FR'}</span>
+      {/* Affiche la langue courante (comme la maquette) */}
+      <span>{current === 'fr' ? 'FR' : 'EN'}</span>
+      <span className="text-[10px] opacity-60" aria-hidden="true">▾</span>
     </button>
   )
 }

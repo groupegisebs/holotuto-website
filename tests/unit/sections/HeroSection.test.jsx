@@ -27,6 +27,13 @@ describe('HeroSection — structure', () => {
     expect(document.querySelector('a[href="https://www.myholo.holotuto.com/"]')).toBeInTheDocument()
   })
 
+  it('contient le lien Google Play Android', async () => {
+    await renderWithI18n(<HeroSection />)
+    expect(
+      document.querySelector('a[href*="play.google.com/store/apps/details?id=com.gisebs.holotuto"]')
+    ).toBeInTheDocument()
+  })
+
   it('contient le bouton démo (ouvre la modale Calendly)', async () => {
     await renderWithI18n(<HeroSection />)
     const demoBtn = document.querySelector('button.btn-secondary')
