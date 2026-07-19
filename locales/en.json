@@ -8,7 +8,8 @@
     "faq": "FAQ",
     "contact": "Contact",
     "seeDemo": "See a demo",
-    "tryFree": "Try for free"
+    "tryFree": "Try for free",
+    "downloadAndroid": "Android app"
   },
   "hero": {
     "eyebrow": "Intelligent homework support at home",
@@ -229,6 +230,8 @@
     "link_faq": "FAQ",
     "link_contact": "Contact us",
     "link_website": "holotuto.com",
+    "link_webApp": "Web app",
+    "link_android": "Download on Google Play",
     "copyright": "© {{year}} HOLO TUTO. All rights reserved.",
     "legal": "Legal notice",
     "privacy": "Privacy policy",

@@ -46,9 +46,9 @@ describe('SolutionSection — barre de stats', () => {
 })
 
 describe('SolutionSection — CTA', () => {
-  it('contient un lien vers classroom.holotuto.com (Découvrir la plateforme)', async () => {
+  it('contient un lien vers myholo.holotuto.com (Découvrir la plateforme)', async () => {
     await renderWithI18n(<SolutionSection />)
-    expect(document.querySelector('a[href="https://classroom.holotuto.com"]')).toBeInTheDocument()
+    expect(document.querySelector('a[href="https://www.myholo.holotuto.com/"]')).toBeInTheDocument()
   })
 })
 

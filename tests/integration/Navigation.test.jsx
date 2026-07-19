@@ -32,9 +32,9 @@ describe('Navigation — liens desktop', () => {
     expect(document.querySelector('button.btn-secondary')).toBeInTheDocument()
   })
 
-  it('le CTA "Essayer gratuitement" pointe vers classroom.holotuto.com', async () => {
+  it('le CTA "Essayer gratuitement" pointe vers myholo.holotuto.com', async () => {
     await renderWithI18n(<Navbar />, { lng: 'fr' })
-    expect(document.querySelector('a[href="https://classroom.holotuto.com"]')).toBeInTheDocument()
+    expect(document.querySelector('a[href="https://www.myholo.holotuto.com/"]')).toBeInTheDocument()
   })
 
   it('le logo pointe vers #hero', async () => {
@@ -106,8 +106,8 @@ describe('Navigation — flux menu mobile complet', () => {
     // Demo → boutons .btn-secondary (desktop + mobile drawer)
     const demoButtons = document.querySelectorAll('button.btn-secondary')
     expect(demoButtons.length).toBeGreaterThanOrEqual(2)
-    // Essai gratuit → liens vers classroom.holotuto.com (desktop + mobile drawer)
-    const tryLinks = document.querySelectorAll('a[href="https://classroom.holotuto.com"]')
+    // Essai gratuit → liens vers myholo.holotuto.com (desktop + mobile drawer)
+    const tryLinks = document.querySelectorAll('a[href="https://www.myholo.holotuto.com/"]')
     expect(tryLinks.length).toBeGreaterThanOrEqual(2)
   })
 })

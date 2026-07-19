@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import Triangle from '../components/Triangle'
+import { WEB_APP_URL } from '../constants/links'
 
 const PILLAR_IMGS = [
   '/images/section3_img1.png',
@@ -92,7 +93,7 @@ export default function SolutionSection() {
         </div>
 
         <div className="text-center mt-8">
-          <a href="https://classroom.holotuto.com" target="_blank" rel="noopener noreferrer" className="btn-primary px-10 py-4 text-base shadow-lg shadow-ht-green/20">
+          <a href={WEB_APP_URL} target="_blank" rel="noopener noreferrer" className="btn-primary px-10 py-4 text-base shadow-lg shadow-ht-green/20">
             {t('solution.cta')}
           </a>
         </div>

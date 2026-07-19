@@ -8,7 +8,8 @@
     "faq": "FAQ",
     "contact": "Contact",
     "seeDemo": "Voir une démo",
-    "tryFree": "Essayer gratuitement"
+    "tryFree": "Essayer gratuitement",
+    "downloadAndroid": "App Android"
   },
   "hero": {
     "eyebrow": "L'accompagnement scolaire intelligent à la maison",
@@ -229,6 +230,8 @@
     "link_faq": "FAQ",
     "link_contact": "Nous contacter",
     "link_website": "holotuto.com",
+    "link_webApp": "Application web",
+    "link_android": "Télécharger sur Google Play",
     "copyright": "© {{year}} HOLO TUTO. Tous droits réservés.",
     "legal": "Mentions légales",
     "privacy": "Politique de confidentialité",

@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import Triangle from '../components/Triangle'
 import { Smile, BarChart2, CheckCircle } from 'lucide-react'
+import { WEB_APP_URL } from '../constants/links'
 
 const BENEFIT_ICONS = [
   { icon: Smile,       color: 'text-ht-green', bg: 'bg-ht-mint',  key: 'benefit1' },
@@ -83,7 +84,7 @@ export default function ParentsSection() {
               })}
             </div>
 
-            <a href="https://classroom.holotuto.com" target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex px-8 py-4 text-base shadow-lg shadow-ht-green/20">
+            <a href={WEB_APP_URL} target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex px-8 py-4 text-base shadow-lg shadow-ht-green/20">
               {t('parents.cta')}
             </a>
           </div>

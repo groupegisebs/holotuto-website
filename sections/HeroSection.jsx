@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { useCalendly } from '../contexts/CalendlyContext'
+import { WEB_APP_URL } from '../constants/links'
 
 const ScreenMockup = ({ t }) => (
   <div className="bg-white/80 rounded-2xl shadow-xl p-4 w-52 text-left border border-gray-100">
@@ -75,7 +76,7 @@ export default function HeroSection() {
             <p className="section-subtitle max-w-lg bg-white/60 rounded-xl px-3 py-2">{t('hero.subtitle')}</p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="https://classroom.holotuto.com" target="_blank" rel="noopener noreferrer" className="btn-primary px-8 py-4 text-base shadow-lg shadow-ht-green/20">
+              <a href={WEB_APP_URL} target="_blank" rel="noopener noreferrer" className="btn-primary px-8 py-4 text-base shadow-lg shadow-ht-green/20">
                 {t('hero.cta_try')}
               </a>
               <button onClick={openModal} className="btn-secondary px-8 py-4 text-base">

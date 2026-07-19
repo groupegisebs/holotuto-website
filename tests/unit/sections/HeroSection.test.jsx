@@ -22,9 +22,9 @@ describe('HeroSection — structure', () => {
     expect(document.querySelector('h1')).toBeInTheDocument()
   })
 
-  it('contient le lien CTA principal (classroom.holotuto.com)', async () => {
+  it('contient le lien CTA principal (myholo.holotuto.com)', async () => {
     await renderWithI18n(<HeroSection />)
-    expect(document.querySelector('a[href="https://classroom.holotuto.com"]')).toBeInTheDocument()
+    expect(document.querySelector('a[href="https://www.myholo.holotuto.com/"]')).toBeInTheDocument()
   })
 
   it('contient le bouton démo (ouvre la modale Calendly)', async () => {

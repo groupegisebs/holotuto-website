@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Smartphone } from 'lucide-react'
 import LanguageSwitcher from './LanguageSwitcher'
 import { useCalendly } from '../contexts/CalendlyContext'
+import { WEB_APP_URL, ANDROID_APP_URL } from '../constants/links'
 
 export default function Navbar() {
   const { t } = useTranslation()
@@ -67,10 +68,19 @@ export default function Navbar() {
         {/* Desktop CTAs + Language Switcher */}
         <div className="hidden lg:flex items-center gap-3">
           <LanguageSwitcher />
+          <a
+            href={ANDROID_APP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-inter font-medium text-ht-navy/80 hover:text-ht-blue transition-colors whitespace-nowrap"
+          >
+            <Smartphone size={16} aria-hidden="true" />
+            {t('nav.downloadAndroid')}
+          </a>
           <button onClick={openModal} className="btn-secondary px-5 py-2 text-sm">
             {t('nav.seeDemo')}
           </button>
-          <a href="https://classroom.holotuto.com" target="_blank" rel="noopener noreferrer" className="btn-primary px-5 py-2 text-sm">
+          <a href={WEB_APP_URL} target="_blank" rel="noopener noreferrer" className="btn-primary px-5 py-2 text-sm">
             {t('nav.tryFree')}
           </a>
         </div>
@@ -102,10 +112,20 @@ export default function Navbar() {
             </a>
           ))}
           <div className="pt-3 flex flex-col gap-3">
+            <a
+              href={ANDROID_APP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="inline-flex items-center justify-center gap-2 py-2.5 text-sm font-inter font-medium text-ht-navy border border-gray-200 rounded-lg hover:bg-ht-light transition-colors w-full"
+            >
+              <Smartphone size={16} aria-hidden="true" />
+              {t('nav.downloadAndroid')}
+            </a>
             <button onClick={() => { openModal(); setOpen(false) }} className="btn-secondary py-2.5 text-sm w-full">
               {t('nav.seeDemo')}
             </button>
-            <a href="https://classroom.holotuto.com" target="_blank" rel="noopener noreferrer" className="btn-primary py-2.5 text-sm w-full">
+            <a href={WEB_APP_URL} target="_blank" rel="noopener noreferrer" className="btn-primary py-2.5 text-sm w-full">
               {t('nav.tryFree')}
             </a>
           </div>
